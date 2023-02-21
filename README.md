@@ -1,5 +1,5 @@
-PROJECT TITLE: Toolx
-Video Demo:  <URL HERE>
+#PROJECT TITLE: Toolx
+##Video Demo:  <URL HERE>
 
 Intro 
 So toolx is a python based digital toolkit that predominantly focuses on file conversion at the moment but I am hoping to add additional features to this soon. This is the final assignment for my CS50 course but will still be maintained after submission. 

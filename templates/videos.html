@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Videos
+{% endblock %}
+
+{% block main %}
+
+<main>
+    <form method="post" action="/video" enctype="multipart/form-data">
+        <div class="input-group mb-3" id="inputGroupFile02">
+            <label class="input-group-text" for="inputGroupFile01">Upload</label>
+            <input name="video" type="file" class="form-control" id="inputGroupFile01" accept="video/mp4,video/x-m4v,video/*">
+          </div>
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="inputGroupSelect01">Options</label>
+            <select name="op1" class="form-select" id="inputGroupSelect01">
+             <option value="0" selected>Choose..</option>
+             <option value="1">Convert to Frames</option>
+             <option value="2">Convert to Black and White</option>
+             <option value="3">Convert to MP3</option>
+             <option value="4">Extract TEXT</option>
+            </select>
+            
+        </div>
+        <button id="b" class="btn btn-outline-secondary" type="submit">Button</button>
+        </form>
+        <div id="placeholder"></div>
+        
+        </main>
+        <script>
+            let placeholder = document.querySelector('#placeholder');
+            let b = document.querySelector('#b');
+            let not = '{{notice}}';
+            let val = document.querySelector('#inputGroupSelect01')
+            let vall = document.querySelector('#inputGroupFile02')
+            
+            // b.addEventListener('click',function(){
+            if (not != 'no'){placeholder.innerHTML = '<div class="alert alert-warning">{{notice}}</div>'};
+            val.addEventListener('input',()=>{
+                if (val.value == '1' || val.value == '2'){
+                    placeholder.innerHTML = '<div class="alert alert-light" role="alert">This may take few minutes!</div>'
+                }
+                if (val.value == '4'){
+                    vall.className = "hide";
+                    placeholder.innerHTML = '<div class="alert alert-light" role="alert">This may take few minutes!</div>';
+                }
+                else{placeholder.innerHTML = ''}
+            })
+            // })
+        </script>
+
+{% endblock %}

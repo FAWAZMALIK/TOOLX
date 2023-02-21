@@ -1,0 +1,172 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Numbers
+{% endblock %}
+
+{% block main %}
+<main>
+    <div class="input-group mb-3">
+        <button  id="convert" class="btn btn-outline-secondary" type="button">Start</button>
+        <select class="form-select" id="inputGroupSelect03" aria-label="Example select with button addon">
+          <option value="0" selected>Choose...</option>
+          <option value="1">Sum all numbers</option>
+          <option value="2">Sum all even numbers</option>
+          <option value="3">Sum all odd numbers</option>
+          <option value="4">Average</option>
+          <!-- <option value="5">Word Count</option>
+          <option value="6">Word Count</option>
+          <option value="7">Word Count</option> -->
+          
+        </select>
+      </div>
+      <div class="input-group input-group-lg">
+        <span class="input-group-text" id="inputGroup-sizing-lg">Numbers</span>
+        <input type="text" id="info" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+      </div>
+      <p class="outputnum" id="out"></p>
+      
+    </main>
+
+
+<script>
+  let opration = document.querySelector('#inputGroupSelect03');
+  let button = document.querySelector('#convert');
+  let output = document.querySelector('#out');
+  let info = document.querySelector('#info');
+
+
+function iseven(number)
+{
+  if(number % 2 == 0) 
+  {
+    return true;
+  }  
+
+  // if the number is odd
+  else 
+  {
+    return false;
+  }
+}
+
+ function clear(){
+  output.innerHTML = "";
+ }
+
+ function sumall()
+ {
+    let sum = 0;
+    let number = info.value;
+    for(let i = 0; i < number.length; i++)
+    {
+       
+        if(Number.isSafeInteger(parseInt(number[i])))
+        {
+            sum = sum + parseInt(number[i]);
+        }
+    
+    }
+    output.innerHTML = sum;
+ }
+ function sumeven()
+ {
+    let sum = 0;
+    let number = info.value;
+    for(let i = 0; i < number.length; i++)
+    {
+       
+        if(Number.isSafeInteger(parseInt(number[i])) && iseven(parseInt(number[i])))
+        {
+            sum = sum + parseInt(number[i]);
+        }
+    
+    }
+    output.innerHTML = sum;
+ }
+
+ function sumodd()
+ {
+    let sum = 0;
+    let number = info.value;
+    for(let i = 0; i < number.length; i++)
+    {
+       
+        if(Number.isSafeInteger(parseInt(number[i])) && iseven(parseInt(number[i])) == false)
+        {
+            sum = sum + parseInt(number[i]);
+        }
+    
+    }
+    output.innerHTML = sum;
+ }
+ 
+ function avrage()
+ {
+    let sum = 0;
+    let number = info.value;
+    for(let i = 0; i < number.length; i++)
+    {
+       
+        if(Number.isSafeInteger(parseInt(number[i])))
+        {
+            sum = sum + parseInt(number[i]);
+        }
+    
+    }
+    avragea = sum / number.length;
+    output.innerHTML = avragea;
+ }
+
+
+
+
+
+opration.addEventListener('input', ()=>{
+  if(opration.value == 1){
+    output.innerHTML = '<div class="alert alert-warning" role="alert">does not support negative and decimal value and will be ignored</div><div class="alert alert-info" role="alert">enter a series of number to get sum of all of them (no need to sperate them)</div>';
+    setTimeout(clear, 5000);
+    setTimeout(()=>{output.innerHTML = '<div class="alert alert-info" role="alert">Enter a series of number to get sum of all of them (no need to sperate them)</div>';},5000)
+  }
+  else if(opration.value == 2){output.innerHTML = '<div class="alert alert-info" role="alert">Enter a series of number to get sum of all the even numbers (no need to sperate them)</div>';}
+  else if(opration.value == 3){output.innerHTML = '<div class="alert alert-info" role="alert">Enter a series of number to get sum of all the odd numbers (no need to sperate them)</div>';}
+  else if(opration.value == 4){output.innerHTML = '<div class="alert alert-info" role="alert">Enter a series of number to get Average of them (no need to sperate them)</div>';}  
+
+
+})
+
+
+button.addEventListener('click',function(){
+  if(opration.value == 0){
+    output.innerHTML = '<div class="alert alert-danger" role="alert">Please Select a Tool!</div>';
+    setTimeout(clear, 3000);
+  }
+  else if(info.value == ""){
+    output.innerHTML = '<div class="alert alert-danger" role="alert">Please Enter the numbers!</div>';
+    setTimeout(clear, 3000);
+  }
+   else if(opration.value == 1){sumall();}
+   else if(opration.value == 2){sumeven();}
+   else if(opration.value == 3){sumodd();}
+   else if(opration.value == 4){avrage();}
+   else{alert("Back!")}
+
+
+
+
+
+
+
+
+
+});
+
+  
+  
+  
+
+
+
+
+</script>
+{% endblock %}

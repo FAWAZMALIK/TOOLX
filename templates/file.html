@@ -1,0 +1,73 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    File Converter
+{% endblock %}
+
+{% block main %}
+<main>
+    <form method="post" action="/file" enctype="multipart/form-data">
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="inputGroupFile01">Upload</label>
+            <input name="file" type="file" class="form-control" id="inputGroupFile01">
+          </div>
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="inputGroupSelect01">Options</label>
+            <select name="op1" class="form-select" id="inputGroupSelect01">
+             <option value="0" selected>Convert From</option>
+             <option value="1">DOCX</option>
+             <option value="2">PDF</option>
+             <option value="3">TEXT</option>
+             
+            </select>
+        </div>
+        
+        
+        
+        
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="inputGroupSelect02">Options</label>
+            <select name="op2" class="form-select" id="inputGroupSelect02">
+             <option selected>Convert To</option>
+             
+             
+             
+             
+             <!-- {% for format in formats  %}
+                <option value={{format.format}}>{{format.format}}</option>
+             {% endfor %} -->
+             
+             
+             
+             <!-- <option value="1">DOCX</option>
+             <option value="2">PDF</option>
+             <option value="3">TEXT</option> -->
+            </select>
+        </div>
+            <button class="btn btn-outline-secondary" type="submit">Button</button>
+            </form>
+            <script>
+            let i1 = document.querySelector("#inputGroupSelect01")
+            let i2 = document.querySelector("#inputGroupSelect02")
+            i1.addEventListener("input", function(){
+                if (i1.value == 1){
+                    html = '<option value="2">PDF</option><option value="3">TEXT</option>';
+                    i2.innerHTML = html;
+                }
+                if (i1.value == 2){
+                    html = '<option value="1">DOCX</option><option value="3">TEXT</option>';
+                    i2.innerHTML = html;
+                }
+                if (i1.value == 3){
+                    html = '<option value="1">DOCX</option><option value="2">PDF</option>';
+                    i2.innerHTML = html;
+                }
+            })
+            </script>
+</main>
+
+
+
+
+
+{% endblock %}

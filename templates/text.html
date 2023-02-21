@@ -1,0 +1,99 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    TEXT
+{% endblock %}
+
+{% block main %}
+
+    <main>
+    <div class="input-group mb-3">
+        <button  id="convert" class="btn btn-outline-secondary" type="button">Start</button>
+        <select class="form-select" id="inputGroupSelect03" aria-label="Example select with button addon">
+          <option value="null" selected>Choose...</option>
+          <option value="1">All Uppercase</option>
+          <option value="2">All Lowercase</option>
+          <option value="3">Alternating Case </option>
+          <option value="4">Word Count</option>
+        </select>
+      </div>
+      <div class="input-group">
+        <span class="input-group-text">Input</span>
+        <textarea id="text" class="form-control" aria-label="With textarea"></textarea>
+      </div>
+      <p class="output" id="out"></p>
+    </main>
+      
+      <script>
+        // Selection Doms
+        let button = document.querySelector("#convert");
+        let opration = document.querySelector("#inputGroupSelect03");
+        let out = document.querySelector("#out");
+        let text = document.querySelector("#text");
+        
+        
+        
+        // all the function used in the page
+
+
+        let alternateCase = function (string) {
+        let chars = string.toLowerCase().split("");
+        for (let i = 0; i < chars.length; i += 2)
+          {
+            chars[i] = chars[i].toUpperCase();
+         }
+            return chars.join("");
+        };
+
+        // text count function
+        function wordcount(text) {
+            text = text.trim();
+            return text.split(/\s+/).length;
+        }
+
+
+        
+
+        button.addEventListener("click",function(){                    
+            let used = false;
+            if (opration.value == null){
+            out.innerHTML = "Invalid option";
+            used = true;
+            }
+            if(opration.value == 1){
+                out.innerHTML = text.value.toUpperCase();
+                used = true;
+              }
+            if(opration.value == 2){
+                out.innerHTML = text.value.toLowerCase();
+                used = true;
+              }
+            if(opration.value == 3){
+                out.innerHTML = alternateCase(text.value);
+                used = true;
+              }
+            if(opration.value == 4){
+                out.innerHTML = wordcount(text.value);
+                used = true;
+              }
+            // if(opration.value == 3){
+            //     out.innerHTML = alternateCase(text.value);
+            // }
+            // if(opration.value == 3){
+            //     out.innerHTML = alternateCase(text.value);
+            // }
+            // if(opration.value == 3){
+            //     out.innerHTML = alternateCase(text.value);
+            // }
+
+            else if(used == false){
+              out.innerHTML = "No Option is Selected";
+            }
+
+
+        })
+        
+
+
+      </script>
+{% endblock %}

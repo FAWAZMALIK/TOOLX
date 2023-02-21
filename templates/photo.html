@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Photos
+{% endblock %}
+
+{% block main %}
+<main>
+    <form method="post" action="/photo" enctype="multipart/form-data">
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="inputGroupFile01">Upload</label>
+            <input name="image" type="file" class="form-control" id="inputGroupFile01" accept="image/*">
+          </div>
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="inputGroupSelect01">Options</label>
+            <select name="op1" class="form-select" id="inputGroupSelect01">
+             <option value="0" selected>Choose..</option>
+             <option value="1">Convert to jpeg</option>
+             <option value="2">Convert to PDF</option>
+             <option value="3">Convert to PNG</option>
+             <option value="4">Extract TEXT</option>
+            </select>
+            
+        </div>
+        <button id="b" class="btn btn-outline-secondary" type="submit">Button</button>
+        </form>
+        <div id="placeholder"></div>
+        
+        </main>
+        <script>
+            let placeholder = document.querySelector('#placeholder');
+            let b = document.querySelector('#b');
+            let not = '{{notice}}';
+            let intone = document.querySelector('#inputGroupSelect01');
+            
+            
+            if (not != 'no'){placeholder.innerHTML = '<div class="alert alert-warning">{{notice}}</div>'};
+            intone.addEventListener('input',()=>{
+                if(intone.value == 4){ placeholder.innerHTML = '<div class="alert alert-warning" role="alert">This may take few minutes</div>';}
+                else{ placeholder.innerHTML = '';}
+            })
+            
+           </script>
+
+
+
+{% endblock %}
